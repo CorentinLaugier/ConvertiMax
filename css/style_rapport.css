@@ -1,0 +1,22 @@
+.img-rapport{
+  border: 1px solid black;
+}
+pre code{
+  font-family: monospace;
+  background-color: #272833;
+  border: 1px solid #999;
+  color: #98c379;
+  display: block;
+  padding: 20px;
+  max-width: 70%;
+}
+
+
+a{
+  text-decoration: blue;
+}
+
+.default_div {
+  padding: 2% 15%;
+  text-align: justify;
+}

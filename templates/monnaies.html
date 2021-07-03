@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang = "fr">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>ConvertiMax</title>
+	<link href="../css/style.css" rel="stylesheet" type="text/css" />
+
+	<script src="../js/script_monnaie.js">
+
+	</script>
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js">
+
+	</script>
+	<link rel="stylesheet" href="../css/bootstrap.min.css" />
+	<script src="../js/bootstrap.min.js">
+
+	</script>
+
+</head>
+
+<body onload="init();">
+
+	<nav>
+		<ul>
+			<li><a class="active" href="../index.html">Accueil</a></li>
+			<li><a href="monnnaies.html">Monnaies</a></li>
+			<li><a href="poids.html">Poids</a></li>
+			<li><a href="distances.html">Distances</a></li>
+      <li><a href="cuisine.html">Cuisine</a></li>
+      <li><a href="historique.html">Historique</a></li>
+			<li><a href="contact.html">Contact</a></li>
+      <!--li><a href="rapport.html">Rapport</a></li-->
+		</ul>
+	</nav>
+
+	<div class="default_div d-flex flex-column align-items-center">
+
+		<form action="/setmonnaie" method="GET">
+
+			<h1 class="mb-4">Convertisseur de devises</h1>
+				<label for="devise-1">Sélectionnez votre devise à convertir</label>
+      <select id="devise-1" name="devise-1" class="custom-select">
+        <option selected="selected" value = "EURO">Union Européenne Euro - EURO</option>
+        <option value = "USD">Dollar Américain - USD</option>
+        <option value = "JPY">Yen Japonais - JPY</option>
+        <option value = "BGN">Lev Bulgare - BGN</option>
+        <option value = "CZK">Couronne Tchèque - CZK</option>
+        <option value = "DKK">Couronne Danoise - DKK</option>
+        <option value = "GBP">livre sterling - GBP</option>
+        <option value = "HUF">forint hongrois - HUF</option>
+        <option value = "PLN">zloty polonais - PLN</option>
+        <option value = "RON">lei roumain - RON</option>
+        <option value = "SEK">couronne suédoise - SEK</option>
+        <option value = "CHF">franc suisse - CHF</option>
+        <option value = "ISK">Couronne islandaise - ISK</option>
+        <option value = "NOK">couronne norvégienne - NOK</option>
+        <option value = "HRK">kuna croate - HRK</option>
+        <option value = "RUB">rouble russe - RUB</option>
+        <option value = "TRY">lire turque - TRY</option>
+        <option value = "AUD">dollar australien - AUD</option>
+        <option value = "BRL">real brésilien - BRL</option>
+        <option value = "CAD">dollar canadien - CAD</option>
+        <option value = "CNY">yuan chinois - CNY</option>
+        <option value = "HKD">dollar de Hong Kong - HKD</option>
+        <option value = "IDR">roupie indonésienne - IDR</option>
+        <option value = "ILS">Shekel israélien - ILS</option>
+        <option value = "INR">roupie indienne - INR</option>
+        <option value = "KRW">won sud-coréen - KRW</option>
+        <option value = "MXN">peso mexicain - MXN</option>
+        <option value = "MYR">ringgit malais - MYR</option>
+        <option value = "NZD">dollar néo-zélandais - NZD</option>
+        <option value = "PHP">pesos philippin - PHP</option>
+        <option value = "SGD">dollar de Singapour - SGD</option>
+        <option value = "THB">baht thailandais - THB</option>
+        <option value = "ZAR">rand sud-africain - ZAR</option>
+      </select>
+
+      <label for="montant-1" class="mt-3">Entrez le montant à convertir</label>
+      <input onClick="this.select();" type="number" name="montant-1" id="montant-1" class="" step="0.01"/>
+
+      <label for="devise-2" class="mt-3">Sélectionnez la devise d'arrivée</label>
+      <select id="devise-2" name="devise-2" class="custom-select">
+        <option selected="selected">Union Européenne Euro - EURO</option>
+        <option value = "USD">Dollar Américain - USD</option>
+        <option value = "JPY">Yen Japonais - JPY</option>
+        <option value = "BGN">Lev Bulgare - BGN</option>
+        <option value = "CZK">Couronne Tchèque - CZK</option>
+        <option value = "DKK">Couronne Danoise - DKK</option>
+        <option value = "GBP">livre sterling - GBP</option>
+        <option value = "HUF">forint hongrois - HUF</option>
+        <option value = "PLN">zloty polonais - PLN</option>
+        <option value = "RON">lei roumain - RON</option>
+        <option value = "SEK">couronne suédoise - SEK</option>
+        <option value = "CHF">franc suisse - CHF</option>
+        <option value = "ISK">Couronne islandaise - ISK</option>
+        <option value = "NOK">couronne norvégienne - NOK</option>
+        <option value = "HRK">kuna croate - HRK</option>
+        <option value = "RUB">rouble russe - RUB</option>
+        <option value = "TRY">lire turque - TRY</option>
+        <option value = "AUD">dollar australien - AUD</option>
+        <option value = "BRL">real brésilien - BRL</option>
+        <option value = "CAD">dollar canadien - CAD</option>
+        <option value = "CNY">yuan chinois - CNY</option>
+        <option value = "HKD">dollar de Hong Kong - HKD</option>
+        <option value = "IDR">roupie indonésienne - IDR</option>
+        <option value = "ILS">Shekel israélien - ILS</option>
+        <option value = "INR">roupie indienne - INR</option>
+        <option value = "KRW">won sud-coréen - KRW</option>
+        <option value = "MXN">peso mexicain - MXN</option>
+        <option value = "MYR">ringgit malais - MYR</option>
+        <option value = "NZD">dollar néo-zélandais - NZD</option>
+        <option value = "PHP">pesos philippin - PHP</option>
+        <option value = "SGD">dollar de Singapour - SGD</option>
+        <option value = "THB">baht thailandais - THB</option>
+        <option value = "ZAR">rand sud-africain - ZAR</option>
+      </select>
+      
+
+      <input type="submit" class="btn btn-secondary mt-4" value = "Convertir">
+      </form>
+      <div id = "cache">
+      <div id="result" class="d-flex flex-column align-items-center">
+        <h3 class="mt-3">Résultat</h3>
+        <div class="d-flex">
+          <div>
+            <p><span id="montant-choisi">50</span> <span id="devise-origine">EURO</span> =</p>
+          </div>    
+          <div class="mx-3">
+            <input type="number" name="montant-2" id="montant-2" class="" onClick="this.select();" readonly/>
+          </div>
+          <div>
+            <p><span id="devise-arrivee">USD</span></p>
+          </div>
+        </div>
+        </div>
+      </div>
+
+    
+  </div>
+
+  </body>
+</html>

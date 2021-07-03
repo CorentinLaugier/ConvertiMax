@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang = "fr">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>ConvertiMax</title>
+	<link href="../css/style.css" rel="stylesheet" type="text/css" />
+
+	<script src="../js/script.js">
+	</script>
+  
+  <script src="../js/script_cuisine.js">
+	</script>
+
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+
+	<link rel="stylesheet" href="../css/bootstrap.min.css" />
+	<script src="../js/bootstrap.min.js">
+	</script>
+
+</head>
+
+<body onload="changeTextCuisine()">
+
+	<nav>
+		<ul>
+			<li><a class="active" href="../index.html">Accueil</a></li>
+      <li><a href="monnaies.html">Monnaies</a></li>
+      <li><a href="poids.html">Poids</a></li>
+      <li><a href="distances.html">Distances</a></li>
+      <li><a href="cuisine.html">Cuisine</a></li>
+      <li><a href="historique.html">Historique</a></li>
+      <li><a href="contact.html">Contact</a></li>
+		</ul>
+	</nav>
+
+
+  <div class="default_div d-flex justify-content-center">
+
+    <form action="/setCuisine" method="GET">
+
+      <h1 class="mb-4">Convertisseur de cuisine</h1>
+
+      
+
+      <label for="ingredient">Sélectionnez votre ingrédient</label>
+      <select id="ingredient" name="ingredient" class="custom-select">
+        <option selected="selected" value = "0">Beurre</option>
+        <option value = "1">Eau</option>
+        <option value = "2">Farine</option>
+        <option value = "3">Huile</option>
+        <option value = "4">Lait</option>
+        <option value = "5">Sucre</option>
+      </select>
+
+      <label for="uniteEntree">Sélectionnez votre unité de départ</label>
+      <select id="uniteEntree" name="uniteEntree" class="custom-select">
+        <option value = "0" selected="selected">Millilitres (mL)</option>
+        <option value = "1">Centilitres (cL)</option>
+        <option value = "2">Gramme (g)</option>
+        <option value = "3">Tasse, US (c.)</option>
+        <option value = "4">Teaspoon/cuillère à café (tsp)</option>
+        <option value = "5">Tablespoon/cuillère à soupe (Tbs.)</option>
+      </select>
+
+      
+
+      <label for="entree" class="mt-3">Combien ? </label>
+      <input type="number" name="entree" id="entree" step="any" class=""/>
+
+      <label for="uniteSortie" class="mt-3">Sélectionnez l'unité d'arrivée</label>
+      <select id="uniteSortie" name="uniteSortie" class="custom-select">
+        <option value = "0" selected="selected">Millilitres (mL)</option>
+        <option value = "1">Centilitres (cL)</option>
+        <option value = "2">Gramme (g)</option>
+        <option value = "3">Tasse, US (c.)</option>
+        <option value = "4">Teaspoon/cuillère à café (tsp)</option>
+        <option value = "5">Tablespoon/cuillère à soupe (Tbs.)</option>
+
+      </select>
+
+      <input type="submit" value="Convertir" class="btn btn-secondary mt-4">
+
+      </form>
+  </div>
+
+  <div id="resultatCuisine">
+    <div class="default_div d-flex flex-column align-items-center" >
+        
+        <h3 class="mt-3">Résultat</h3>
+        <div class="d-flex justify-content-center" >
+          <div>
+            <p><span id="affichageEntree">entree</span> <span id="affichageUniteEntree">unite_entree</span> de <span id="affichageIngredient">ingredient</span> vaut/valent </p>
+          </div>    
+          <div class="mx-3">
+            <input type="number" name="affichageResultat"  class="" readonly id="affichageResultat">
+          </div>
+          <div>
+            <p><span id="affichageUniteSortie">unite_sortie</span> de <span id = "affichageIngredient-2">ingredient</span>.</p>
+          </div>
+
+        </div>
+
+    </div>
+  </div>
+
+  
+
+  </body>
+</html>

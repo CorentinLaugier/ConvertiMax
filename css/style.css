@@ -1,0 +1,188 @@
+/* Design Général */
+
+.default_div{
+  margin: 2%;
+  padding: 15px;
+  background-color: #eee;
+}
+
+#main{
+    flex-direction: column;
+    align-items: stretch;
+}
+
+/*Barre de Navigation*/
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+nav li {
+  float: left;
+}
+
+nav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none !important;
+}
+
+nav li a:hover {
+  background-color: #111;
+}
+
+
+/*Formulaires*/
+
+form{
+  width: 40%;
+  margin: 20px 0px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+dd {
+  min-width: 300px;
+}
+
+input[type=text], input[type=number] {
+  width: 100%;
+  padding: 6px 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0; 
+}
+input[type=number] { 
+  -moz-appearance: textfield;
+  /*appearance: textfield;*/
+  margin: 0; 
+
+  text-align: center;
+}
+
+.secondes{
+  font-size: 12px;
+}
+
+/* input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}*/
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+/* HISTORIQUE */
+
+.grid-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item { 
+  flex: 1; 
+  border-right: solid 0.5px;
+  border-top: solid 0.1px ;
+  border-bottom: solid 0.1px;
+  border-left: solid 0px !important;
+  padding-left:1rem;
+}
+
+.item-wide { 
+  flex: 1; 
+  border-right: solid 0.5px;
+  border-top: solid 0.1px;
+  border-bottom: solid 0.1px;
+  border-left: solid 0.5px;
+  text-align:center;
+}
+
+.break {
+  flex-basis: 100%;
+  height: 0;
+}
+
+.drapeau{
+  height:40px;
+  margin-right:0.5rem;
+}
+
+
+/* CAROUSEL */
+
+.carousel-container {
+  width:80%;
+  height: 60%;
+  margin:auto;
+}
+
+.carousel-inner img {
+	width: 100%;
+	height: 100%;
+}
+
+.two-thirds-screen-image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 66vh;
+}
+
+.image-1 {
+	background-image: url("../img/monnaies.jpg");
+}
+
+.image-2 {
+	background-image: url("../img/poids.jpg");
+}
+
+.image-3 {
+	background-image: url("../img/metre.jpg");
+}
+
+.image-4 {
+	background-image: url("../img/cuisine.jpg");
+}
+
+.image-5 {
+	background-image: url("../img/welcome.jpg");
+}
+
+.texte-carousel {
+	position: absolute;
+	right: 15%;
+	bottom: 20px;
+	left: 15%;
+	z-index: 10;
+	padding-top: 20px;
+	padding-bottom: 20px;
+
+	text-align: center;
+	color: #fff;
+	text-shadow: 0.1em 0.1em 0.2em #000;
+}
+
+/* Contact */
+

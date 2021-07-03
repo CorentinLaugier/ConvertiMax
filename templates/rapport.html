@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang = "fr">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>ConvertiMax</title>
+	<link href="../css/style.css" rel="stylesheet" type="text/css" />
+  <link href="../css/style_rapport.css" rel="stylesheet" type="text/css" />
+
+	<script src="../js/script.js"></script>
+
+	<link rel="stylesheet" href="../css/bootstrap.min.css" />
+	<script src="../js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+
+  <div class="default_div d-flex justify-content-around flex-wrap">
+    <h1>
+      Rapport - Groupe 4
+    </h1>
+  </div>
+  <div class="default_div">
+    <h2>Présentation du concept</h2>
+    <p class="pRap">Nous avons décidé de développé un site dédié à des <strong>conversions</strong> en tout genre, et nous l'avons appelé <strong>ConvertiMax</strong>. Ce choix est venu d'une volonté de mettre en oeuvre le plus de fonctionnalités possibles par rapport au cours suivi, tout en développant un outil indépendant, fonctionnel.</p>
+  </div>
+  <div class="default_div">
+    <h2>Idées retenues</h2>
+    <h3>Conversions "simples" d'unités</h3>
+    <p class = "pRap">Nous avons commencé par faire deux convertisseurs simples d'unités de poids et de distance. Ils prennent en entrée deux unités et une valeur à transformer.</p>
+    <p class = "pRap">Ils sont "simples" au sens où l'on a besoin d'un unique taux de conversion, fixe, pour calculer le résultat. </p>
+    <p class = "pRap">
+      Pour le poids les unités sont :
+      <ul>
+        <li>Gramme (g)</li>
+        <li>Kilogramme (kg)</li>
+        <li>Ounce, UK (oz)</li>
+        <li>Pound (Lb)</li>
+      </ul>
+      Pour les distances les unités possibles sont :
+      <ul>
+        <li>Mètre (m)</li>
+        <li>Kilomètre (km)</li>
+        <li>Mile (mi)</li>
+        <li>Mille marin (NM)</li>
+      </ul>
+    <img class="img-rapport rounded mx-auto d-block" src = "../img_rapport/distance_retenu.png" alt = "Conversion distance" style = "width: 50%;"/>
+    <br>
+    <img class="img-rapport rounded mx-auto d-block" src = "../img_rapport/poids_retenu.png" alt = "Conversion poids" style = "width: 50%;"/>
+    <h3>Conversions d'ingrédients de cuisine</h3>
+    <p class="pRap">Nous avons ensuite pensé aux unités de mesures en cuisine qui mélangent les volumes et poids, ce qui nécessite de prendre en compte des ingrédients spécifiques. Les recettes de cuisine incluent aussi des unités de mesures non métriques comme les cuillères à soupes ou les cuillères à café.</p>
+    <p class=pRap>Cette fonctionnalité ajoute donc en plus la masse volumique de l'ingrédient considéré. Les ingrédients possibles sont :</p>
+    <ul>
+      <li>Beurre</li>
+      <li>Eau</li>
+      <li>Farine</li>
+      <li>Huile</li>
+      <li>Lait</li>
+      <li>Sucre</li>
+    </ul>
+    <p class = "pRap">Et les unités possibles sont :</p>
+    <ul>
+      <li>Millilitres (mL)</li>
+      <li>Centilitres (cL)</li>
+      <li>Gramme (g)</li>
+      <li>Tasse, US (c.)</li>
+      <li>Teaspoon/cuillère à café (tsp)</li>
+      <li>Tablespoon/cuillère à soupe (Tbs.)</li>
+    </ul>
+    <img class = "img-rapport rounded mx-auto d-block" src = "../img_rapport/cuisine_retenu.png" alt = "Conversion poids" style = "width: 50%;"/>
+    <h3>Conversions de devises</h3>
+    <p class="pRap">Nous avons ensuite voulu inclure l'utilisation d'une API sur notre site. D'où l'idée de convertir des devises, en récupérant les <strong>taux de change en direct</strong> pour calculer les résultats de conversion.</p>
+    <p class = "pRap">Les devises que nous avons considéré sont présentes <a href = "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html">ici</a>.</p>
+    <img class = "img-rapport rounded mx-auto d-block" src = "../img_rapport/monaiemonaiemonaie_retenu.png" alt = "Conversion poids" style = "width: 50%;"/>
+    <p class=pRap>Notre outil de conversion des devises inclut aussi un historique des conversions effectuées : on enregistre les heures, devises de départ, d'arrivée, et bien sûr les montants convertis et les résultats.
+
+  </div>
+  <div class="default_div">
+    <h2>Techniques utilisées</h2>
+    <!-- Attention ici j'ai mis une structure légèrement différente de la soutenance car c'est plus logique comme ça. Corentin je veux bien que tu détailles un peu la partie DB et je m'occupe du reste-->
+    <h3>Conversions d'unités "statiques"</h3>
+    <p class="pRap">Dans le cas du poids et de la distance, la transformation se fait avec un dictionnaire statique de correspondance entre les unités : les clefs sont les unités et les valeurs correspondent à combien de cette unité équivaut à 1 gramme ou à 1 mètre.</p>
+    <pre>
+      <code style = "color: #98c379;">
+        <span style="font-weight: bold;">var</span> facteursConversionPoids = {
+        'g' : 1,
+        'kg' : 1000,
+        'ounce (UK)' : 28.349,
+        'pound' : 453.59
+      };
+      </code>
+    </pre>
+    <pre>
+      <code style = "color: #98c379;">
+        <span style="font-weight: bold;">var</span> facteursConversionDistance = {
+          'm' : 1,
+          'km' : 1000,
+          'mile' : 1609.34,
+          'mille marin' : 1852
+        };
+      </code>
+    </pre>
+    
+
+    <p class = "pRap">Pour la conversion pour la cuisine, l'idée est la même mais avec un dictionnaire additionnel pour la densité des ingrédients.</p>
+    <pre>
+      <code style = "color: #98c379;">
+        <span style="font-weight: bold;">var</span> densitesCuisine = { 
+          "Beurre" : 9.1,
+          "Eau" : 10,
+          "Farine" : 5.5,
+          "Huile" : 9.2,
+          "Lait" : 10.3,
+          "Sucre" : 15.9
+        };
+      </code>
+    </pre>
+    <pre>
+      <code style = "color: #98c379;">
+        <span style="font-weight: bold;">var</span> facteursConversion = {
+          "mL" : 0.1,
+          "cL" : 1,
+          "tasse (US)" : 240,
+          "tsp" : 0.492892,
+          "tcp" : 1.47868
+        };
+      </code>
+    </pre>
+    <p class = "pRap">Ces dictionnaires sont des constantes stockées dans des fichiers Javascript que l'on appelle lors d'une conversion.</p>
+
+    <p class=pRap>On trouvera ci-dessous un schéma de la structure mise en oeuvre. Les pages du site correspondent à l'encadré "html". Nous utilisons un serveur node.js qui possède notamment une variable <em>poids</em> (dans cet exemple) qui contient les informations de la conversion en cours, comme on peut le voir dans l'encadré en bas à droite de l'image. L'attribut display, valant 0 ou 1, nous sert dans l'affichage de la page. Si ce paramètre est à 0, l'onglet "résultats" ne s'affiche pas. </p>
+    <p class=pRap>L'encadré en bas à gauche détaille les différentes étapes : on utilise notamment jQuery et des requêtes AJAX. Remarquez que la constante des facteurs de conversion est stockée dans le fichier de script. De plus nous avons synchronisé les requêtes grâce à des fonctions de callback.</p>
+
+    <img src="../img_rapport/poids_structure.png" style="max-width:70%">
+
+
+
+    <h3>Conversions de devises</h3>
+    <p class="pRap">Pour avoir les taux de changes de devises en direct nous avons utilisé d'api <a href = "https://exchangeratesapi.io/">exchangeratesapi</a>, qui nous renoie un json sous cette forme :</p>
+    <pre>
+      <code style = "color: #98c379;">
+        {
+          "base": "EUR",
+          "date": "2020-06-14",
+          "rates": {
+            "CAD": 1.565,
+            "CHF": 1.1798,
+            "GBP": 0.87295,
+            "SEK": 10.2983,
+            "EUR": 1.092,
+            "USD": 1.2234,
+            ...
+          }
+        }
+      </code>
+    </pre>
+    <p class = "pRap">Pour faire appel à cet API nous utilisons des requêtes AJAX. Ceci rajoute deux étapes au schéma précédent, comme détaillé ci-dessous.</p>
+
+    <img src="../img_rapport/devises_structure.png" style="max-width:70%">
+
+
+
+    <h3>Historique des conversions de devises</h3>
+    <p class="pRap">Notre site utilise une base de données sqlite3 pour stocker toutes les conversions de devises qui ont été faites, et les afficher sur la page <a href = "historique.html">historique</a>. La base de données utilisée comprend une seule table, "historique". Cette table contient une seule ligne, avec deux champs, l'id et la valeur. La valeur correspond à un json sous forme de chaîne de caractère (que nous analysons avec JSON.parse). Une fois analysé, nous obtenons un dictionnaire sous cette forme :</p>
+    <pre>
+      <code style = "color: #98c379;">
+        historique = {
+          '13:50:38': {
+            'value-1': 380,
+            'value-2': 423.85,
+            'unit-1': 'GBP',
+            'unit-2': 'EURO'
+          },
+          '14:04:06': {
+            'value-1': 380,
+            'value-2': 423.85,
+            'unit-1': 'GBP',
+            'unit-2': 'EURO'
+          }
+        }
+      </code>
+    </pre>
+    <p class = "pRap">La clef correspond au moment où la conversion a été faite (il pourrait y avoir une perte de donnée si deux conversions sont faites à la même seconde, mais ça ne causerait pas d'erreur), et les valeurs sont des dictionnaires qui contiennent les valeurs de départ et d'arrivée, ainsi que les devises considérées. Nous utilisons ici le package sqlite3 de node.js. Nous avons ensuite utilisé jQuery pour parcourir ce dictionnaire et créer une ligne de tableau pour chaque conversion.</p>
+    <img class = "img-rapport rounded mx-auto d-block" src = "../img_rapport/historique_retenu.png" alt = "Conversion poids" style = "width: 50%;"/>
+
+    <h3>Autres fonctionnalités du site</h3>
+    <h4>Préférences de l'utilisateur</h4>
+    <p class = "pRap">L'utilisateur a la possibilité de choisir ses unités par défaut sur la page d'accueil du site. C'est l'option qui sera sélectionnée par défaut dans les autres onglets contenant des formulaires. Nous avons ici aussi utilisé des requêtes AJAX pour accéder et modifier les options, qui sont stockées dans notre index.js.</p>
+    <img class = "img-rapport rounded mx-auto d-block" src = "../img_rapport/options.png" alt = "Conversion poids" style = "width: 50%;"/>
+    <h4>Insertion d'une carte</h4>
+    <p class="pRap">Notre site fait aussi appel à OpenLayers pour afficher une carte avec un logo à l'emplacement de CentraleSupélec (les coordonées montrées peuvent être facilement modifiées) dans la page "contact".</p>
+    <img class = "img-rapport rounded mx-auto d-block" src = "../img_rapport/retrouver.png" alt = "Conversion poids" style = "width: 50%;"/>
+  </div>
+  
+  <div class="default_div">
+    <h2>Limitations et points d'amélioration</h2>
+    <h3>Un peu de "bricolage"...</h3>
+    <h4>Dans le remplissage de la base de données</h4>
+    <p class="pRap">Le remplissage de la base de données pour l'historique des conversions est effectué par le serveur lors de chaque nouvelle conversion de devises. Or, pour cela, le serveur doit calculer le résultat de la conversion, alors que dans notre schéma de base le calcul est effectué lors de l'exécution du script javascript. Ainsi, le calcul est effectué deux fois, ce qui n'est pas optimal. </p>
+    
+    <h4>Pour l'ajout de nouvelles unités</h4>
+    <p class="pRap">Pour un type de conversion donnée, la liste des unités est en fait répétée trois fois : dans la table de correspondances qui contient les taux de conversion, dans le formulaire correspondant, ainsi que dans le formulaire de choix des préférences. De ce fait, pour ajouter une nouvelle unité de conversion, il faut modifier ces trois zones de code.</p>
+    <p class=pRap>Une première étape pour améliorer ça serait de paramétrer les formulaires en fonction des unités présentes dans la table d'association.</p>
+    <p class=pRap>On pourrait même remplacer les diverses tables d'association par une unique base de données, qui serait donc le seul élément à modifier pour ajouter ou supprimer des unités de conversion.</p>
+
+    <h4>Pour la sécurité</h4>
+    <p class=pRap>Même s'il s'agit d'un point que nous n'avons pas abordé cette semaine, il nous semble que notre site ne comprend pas vraiment d'étapes de validation des données retournées par les différentes requêtes. Ainsi, on ne gère pas le cas où un petit malin enverrait au site une requête sur le modèle de celles générées par les différents formulaires, avec des données non conformes à ce qui devrait être envoyé. </p>
+
+    <h3>Idées de développement futurs</h3>
+    <h4>Nouvelles conversions</h4>
+    <p class=pRap>Tout d'abord, nous pourrions ajouter d'autres outils de conversion sur le même modèle : conversions d'angles, de pressions... </p>
+    <p class=pRap>Nous avons aussi pensé à utiliser une API externe pour convertir des adresses postales en coordonnées GPS et inversement, voire même pourquoi pas en coordonnées sphériques dans le référentiel géocentrique.</p>
+    
+    <h4>Un onglet traduction ?</h4>
+    <p class=pRap>Nous avions aussi pensé à un onglet de traduction ("conversion d'une langue à l'autre", si l'on veut). Seulement, il nous a semblé que ce n'était pas complètement cohérent avec le reste, et surtout nous n'avons pas trouvé d'API gratuite pour faire ça : en particulier, celle de Google Translate est payante.</p>
+
+    <h4>Traduction du site</h4>
+    <p class=pRap>Nous pourrions envisager d'ajouter une seconde langue au site, avec un bouton pour passer de l'un à l'autre.</p>
+  </div>
+
+</body>
+</html>

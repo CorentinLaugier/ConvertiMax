@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang = "fr">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>ConvertiMax</title>
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<script src="js/script.js">
+
+	</script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<script src="js/bootstrap.min.js"></script>
+
+
+
+</head>
+
+<body>
+
+	<!--img src="" alt="banner"/-->
+
+	<nav class="">
+		<ul>
+			<li><a class="active" href="/">Accueil</a></li>
+			<li><a href="templates/monnaies.html">Monnaies</a></li>
+			<li><a href="templates/poids.html">Poids</a></li>
+			<li><a href="templates/distances.html">Distances</a></li>
+			<li><a href="templates/cuisine.html">Cuisine</a></li>
+			<li><a href="templates/historique.html">Historique</a></li>
+			<li><a href="templates/contact.html">Contact</a></li>
+		</ul>
+	</nav>
+
+	<!-- 
+    - Page Accueil
+    - 1 page Conversion de Monnaies 
+      -> accès cours actuels
+    - 1 page conversion grammes-ounces/pounds/gallon etc
+          conversion volume/poids ingrédients (farine etc)
+          -> base de données masses volumiques
+    - 1 page distances (avec des unités un peu désuettes)    
+    - 1 page contact
+          GoogleMaps
+
+    - eventuellement 1 page translate avec l'API de Yandex ou autre
+
+          -->
+
+	<div class="carousel-container my-5">
+		<!-- Carousel -->
+		<!-- div id="myCarousel" class="carousel bg-white" data-interval="false"-->
+    <div id="myCarousel" class="carousel slide bg-white" data-ride="carousel">
+
+			<!-- Indicators -->
+			<ul class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+				<li data-target="#myCarousel" data-slide-to="3"></li>
+				<li data-target="#myCarousel" data-slide-to="4"></li>
+			</ul>
+
+			<!-- The slideshow -->
+			<div class="carousel-inner active">
+				<div class="carousel-item two-thirds-screen-image image-5 active">
+					<div class="texte-carousel">
+						<h1>Bienvenue chez ConvertiMax !</h1>
+					</div>
+				</div>
+				<div class="carousel-item two-thirds-screen-image image-1">
+					<div class="texte-carousel">
+						<h3>Convertissez vos Monnaies</h3>
+					</div>
+				</div>
+				<div class="carousel-item two-thirds-screen-image image-2">
+					<div class="texte-carousel">
+						<h3>Convertissez des masses</h3>
+					</div>
+				</div>
+				<div class="carousel-item two-thirds-screen-image image-3">
+					<div class="texte-carousel">
+						<h3>Convertissez des distances</h3>
+					</div>
+				</div>
+				<div class="carousel-item two-thirds-screen-image image-4">
+					<div class="texte-carousel">
+						<h3>Convertissez vos unités de cuisine</h3>
+					</div>
+				</div>
+			</div>
+
+			<!-- Left and right controls -->
+			<a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+				<span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="default_div d-flex justify-content-center">
+
+      <form action="/setpreference" method = "GET">
+
+        <h1 class="mb-4">Unités par défaut</h1>
+        <dl class="d-flex flex-column align-items-center">
+            <dt><div style = "font-size: 2em;font-weight: normal;">Devise</div></dt>
+            <dd>
+            <select name="select-devise" class="custom-select">
+              <option selected="selected" value = "EURO">Union Européenne Euro - EURO</option>
+              <option value = "USD">Dollar Américain - USD</option>
+              <option value = "JPY">Yen Japonais - JPY</option>
+              <option value = "BGN">Lev Bulgare - BGN</option>
+              <option value = "CZK">Couronne Tchèque - CZK</option>
+              <option value = "DKK">Couronne Danoise - DKK</option>
+              <option value = "GBP">livre sterling - GBP</option>
+              <option value = "HUF">forint hongrois - HUF</option>
+              <option value = "PLN">zloty polonais - PLN</option>
+              <option value = "RON">lei roumain - RON</option>
+              <option value = "SEK">couronne suédoise - SEK</option>
+              <option value = "CHF">franc suisse - CHF</option>
+              <option value = "ISK">Couronne islandaise - ISK</option>
+              <option value = "NOK">couronne norvégienne - NOK</option>
+              <option value = "HRK">kuna croate - HRK</option>
+              <option value = "RUB">rouble russe - RUB</option>
+              <option value = "TRY">lire turque - TRY</option>
+              <option value = "AUD">dollar australien - AUD</option>
+              <option value = "BRL">real brésilien - BRL</option>
+              <option value = "CAD">dollar canadien - CAD</option>
+              <option value = "CNY">yuan chinois - CNY</option>
+              <option value = "HKD">dollar de Hong Kong - HKD</option>
+              <option value = "IDR">roupie indonésienne - IDR</option>
+              <option value = "ILS">Shekel israélien - ILS</option>
+              <option value = "INR">roupie indienne - INR</option>
+              <option value = "KRW">won sud-coréen - KRW</option>
+              <option value = "MXN">peso mexicain - MXN</option>
+              <option value = "MYR">ringgit malais - MYR</option>
+              <option value = "NZD">dollar néo-zélandais - NZD</option>
+              <option value = "PHP">pesos philippin - PHP</option>
+              <option value = "SGD">dollar de Singapour - SGD</option>
+              <option value = "THB">baht thailandais - THB</option>
+              <option value = "ZAR">rand sud-africain - ZAR</option>
+            </select>
+            </dd>
+            <dt>
+              <div style = "font-size: 2em;font-weight: normal;">Poids</div>
+            </dt>
+            <dd>
+              <select name="select-poids" class="custom-select">
+                <option value = "0" selected="selected">Gramme (g)</option>
+                <option value = "1">Kilogramme (kg)</option>
+                <option value = "2">Ounce, UK (oz)</option>
+                <option value = "3">Pound (Lb)</option>
+              </select>
+            </dd>
+            <dt>
+              <div style = "font-size: 2em;font-weight: normal;">Distances</div>
+            </dt>
+            <dd>
+              <select name="select-distance" class="custom-select">
+                <option selected="selected" value = "0">Mètre (m)</option>
+                <option value = "1">Kilomètre (km)</option>
+                <option value = "2">Mile (mi)</option>
+                <option value = "3">Mille marin (NM)</option>
+              </select>
+            </dd>
+            <dt>
+              <div style = "font-size: 2em;font-weight: normal;">Cuisine</div>
+            </dt>
+            <dd>
+              <dt>
+                <div style = "font-size: 1.5em;font-weight: normal;">Ingrédient</div>
+              </dt>
+            <dd>
+              <select name="select-ingredient" class="custom-select">
+                <option selected="selected" value = "0">Beurre</option>
+                <option value = "1">Eau</option>
+                <option value = "2">Farine</option>
+                <option value = "3">Huile</option>
+                <option value = "4">Lait</option>
+                <option value = "5">Sucre</option>
+              </select>
+            </dd>
+            <dt>
+              <div style = "font-size: 1.5em;font-weight: normal;">Unité</div>
+            </dt>
+            <dd>
+              <select name="select-unite" class="custom-select">
+                <option value = "0" selected="selected">Millilite (mL)</option>
+                <option value = "1">Centilitre (cL)</option>
+                <option value = "2">Gramme (g)</option>
+                <option value = "3">Tasse, Us (c.)</option>
+                <option value = "4">Teaspoon/cuillère à café (tsp)</option>
+                <option value = "5">tablespoon/cuillère à soupe (Tcp.)</option>
+              </select>
+            </dd>
+        </dl>
+        <input class = "btn btn-secondary" type="submit" value="Valider">
+      </form>
+    </div>
+
+  </body>
+</html>

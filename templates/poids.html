@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang = "fr">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>ConvertiMax</title>
+	<link href="../css/style.css" rel="stylesheet" type="text/css" />
+
+	<script src="../js/script.js">
+	</script>
+  
+  <script src="../js/script_poids.js">
+	</script>
+
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+
+	<link rel="stylesheet" href="../css/bootstrap.min.css" />
+	<script src="../js/bootstrap.min.js">
+	</script>
+
+</head>
+
+<body onload="changeTextPoids()">
+
+	<nav>
+		<ul>
+			<li><a class="active" href="../index.html">Accueil</a></li>
+      <li><a href="monnaies.html">Monnaies</a></li>
+      <li><a href="poids.html">Poids</a></li>
+      <li><a href="distances.html">Distances</a></li>
+      <li><a href="cuisine.html">Cuisine</a></li>
+      <li><a href="historique.html">Historique</a></li>
+      <li><a href="contact.html">Contact</a></li>
+		</ul>
+	</nav>
+
+
+  <div class="default_div d-flex justify-content-center">
+
+    <form action="/setPoids" method="GET">
+
+      <h1 class="mb-4">Convertisseur de poids</h1>
+
+      
+
+      <label for="uniteEntree">Sélectionnez votre unité de départ</label>
+      <select id="uniteEntree" name="uniteEntree" class="custom-select">
+        <option value = "0" selected="selected">Gramme (g)</option>
+        <option value = "1">Kilogramme (kg)</option>
+        <option value = "2">Ounce, UK (oz)</option>
+        <option value = "3">Pound (Lb)</option>
+      </select>
+
+      
+
+      <label for="entree" class="mt-3">Combien ? </label>
+      <input type="number" step = "any" name="entree" id="entree" class=""/>
+
+      <label for="uniteSortie" class="mt-3">Sélectionnez l'unité d'arrivée</label>
+      <select id="uniteSortie" name="uniteSortie" class="custom-select">
+        <option value = "0" selected="selected">Gramme (g)</option>
+        <option value = "1">Kilogramme (kg)</option>
+        <option value = "2">Ounce, UK (oz)</option>
+        <option value = "3">Pound (Lb)</option>
+
+      </select>
+
+      <input type="submit" value="Convertir" class="btn btn-secondary mt-4">
+
+      </form>
+  </div>
+
+  <div id="resultatPoids">
+    <div class="default_div d-flex flex-column align-items-center" >
+        
+        <h3 class="mt-3">Résultat</h3>
+        <div class="d-flex justify-content-center" >
+          <div>
+            <p><span id="affichageEntreePoids">entree</span> <span id="affichageUniteEntreePoids">unite_entree</span> équivaut à </p>
+          </div>    
+          <div class="mx-3">
+            <input type="number" name="affichageResultatPoids"  class="" readonly id="affichageResultatPoids">
+          </div>
+          <div>
+            <p><span id="affichageUniteSortiePoids">unite_sortie</span>.</p>
+          </div>
+
+        </div>
+
+    </div>
+  </div>
+
+  
+
+  </body>
+</html>
